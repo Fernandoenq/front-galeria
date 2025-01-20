@@ -16,7 +16,7 @@ const Cadastro = () => {
     PersonName: '',
     Phone: '',
   });
-  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const [isButtonEnabled, setIsButtonEnabled] = useState(true);
 
   useEffect(() => {
     const pathSegments = location.pathname.split('/').slice(2);
@@ -40,6 +40,7 @@ const Cadastro = () => {
     }
   };
 
+  /*
   const validateFields = () => {
     const nameValid = /\w+/.test(formData.PersonName); // Verifica se há pelo menos uma letra ou número
     const phoneValid = /^\d{11}$/.test(formData.Phone.replace(/\D/g, '')); // Verifica se o telefone tem 11 dígitos
@@ -49,19 +50,19 @@ const Cadastro = () => {
   useEffect(() => {
     validateFields();
   }, [formData]);
-
+*/
   const handleSubmit = async (e, number) => {
     e.preventDefault();
 
     setIsLoading(true);
 
-    const rawPhone = formData.Phone.replace(/\D/g, '');
-    const formattedPhone = `55${rawPhone}`;
+    //const rawPhone = formData.Phone.replace(/\D/g, '');
+    //const formattedPhone = `55${rawPhone}`;
 
     const requestBody = {
       RegisterDate: new Date().toISOString().split('T')[0],
-      PersonName: formData.PersonName,
-      Phone: formattedPhone,
+      PersonName: "Fernando",
+      Phone: "5516991005074",
       Cpf: "44134412811",
       BirthDate: new Date().toISOString().split('T')[0],
       Mail: "default@example.com",
@@ -127,33 +128,6 @@ const Cadastro = () => {
       </div>
       <div className="form-container">
         <h1 className="form-title">Baixe suas imagens</h1>
-
-        <div className="user-info">
-          <div>
-            <input
-              type="text"
-              id="personName"
-              name="PersonName"
-              value={formData.PersonName}
-              onChange={handleInputChange}
-              className="input-field"
-              placeholder="Digite seu nome"
-              required
-            />
-          </div>
-          <div>
-            <input
-              type="tel"
-              id="phone"
-              name="Phone"
-              value={formData.Phone}
-              onChange={handleInputChange}
-              className="input-field"
-              placeholder="Digite seu telefone"
-              required
-            />
-          </div>
-        </div>
 
         <div className="button-list">
           {numbersFromUrl.map((number, index) => (
